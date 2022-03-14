@@ -8,26 +8,17 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Slf4j
 public class ReadSgmFile {
-    private String PATH = "data";
+    private final String PATH = "data";
 
     public List<List<String>> readFiles() {
         return getFilesFromDirectory().stream()
                 .map(this::fileLineLoader)
                 .collect(Collectors.toList());
-//        List<List<String>> articles = new ArrayList<>();
-//        List<File> filesFromDirectory = getFilesFromDirectory();
-//        for (int i = 0; i < filesFromDirectory.size(); i++) {
-//            articles.add(fileLineLoader(filesFromDirectory.get(0)));
-//        }
-//        return articles;
     }
 
     private List<File> getFilesFromDirectory() {
@@ -36,8 +27,7 @@ public class ReadSgmFile {
                     .filter(Files::isRegularFile)
                     .map(Path::toFile)
                     .collect(Collectors.toList());
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             throw new RuntimeException("Error while reading files in directory" + PATH);
         }
     }
