@@ -28,15 +28,15 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         launch();
-        ReadSgmFile f = new ReadSgmFile();
-        List<List<String>> files = f.readFiles();
-
-        ExtractFiles ex = new ExtractFiles();
-
-        HashMap<String, List<String>> articles = ex.countriesAndArticles(files.get(0)); // zwraca mape gdzie key - kraj, value - lista artykulow
-        for (Map.Entry<String, List<String>> entry : articles.entrySet()) {
-            System.out.println(entry.getKey() + " : " + entry.getValue());
-            System.out.println("/////////////////");
-        }
+//        ReadSgmFile f = new ReadSgmFile();
+//        List<List<String>> files = f.readFiles();
+//
+//        ExtractFiles ex = new ExtractFiles();
+//
+//        HashMap<String, List<String>> articles = ex.countriesAndArticles(files.get(0)); // zwraca mape gdzie key - kraj, value - lista artykulow
+//        for (Map.Entry<String, List<String>> entry : articles.entrySet()) {
+//            System.out.println(entry.getKey() + " : " + entry.getValue());
+//            System.out.println("/////////////////");
+//        }
     }
 }

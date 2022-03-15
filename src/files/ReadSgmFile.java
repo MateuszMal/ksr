@@ -28,6 +28,7 @@ public class ReadSgmFile {
                     .map(Path::toFile)
                     .collect(Collectors.toList());
         } catch (IOException e) {
+            log.info(e.getMessage());
             throw new RuntimeException("Error while reading files in directory" + PATH);
         }
     }

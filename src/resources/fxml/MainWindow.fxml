@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" style="-fx-background-color: #cce6ff;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" style="-fx-background-color: #cce6ff;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.MainWindowController">
    <bottom>
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Autorzy: Piotr Lewiński &amp; Mateusz Malenta" BorderPane.alignment="CENTER" />
    </bottom>
@@ -22,21 +22,21 @@
               <menus>
                 <Menu mnemonicParsing="false" text="Plik">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="Dodaj pliki" />
-                        <MenuItem mnemonicParsing="false" text="Zakończ" />
+                    <MenuItem fx:id="addFiles" mnemonicParsing="false" text="Dodaj pliki" />
+                        <MenuItem fx:id="endItem" mnemonicParsing="false" onAction="#exit" text="Zakończ" />
                   </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Edytuj">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="Stop lista" />
-                        <MenuItem mnemonicParsing="false" text="Wybór miar" />
-                        <MenuItem mnemonicParsing="false" text="Wybór cech" />
-                        <MenuItem mnemonicParsing="false" text="Zakres procentowy" />
+                    <MenuItem fx:id="stopListItem" mnemonicParsing="false" text="Stop lista" />
+                        <MenuItem fx:id="measuresChoice" mnemonicParsing="false" text="Wybór miar" />
+                        <MenuItem fx:id="attributesChoice" mnemonicParsing="false" text="Wybór cech" />
+                        <MenuItem fx:id="percentageScope" mnemonicParsing="false" text="Zakres procentowy" />
                   </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Pomoc">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="O programie" />
+                    <MenuItem fx:id="aboutProgram" mnemonicParsing="false" text="O programie" />
                   </items>
                 </Menu>
               </menus>
@@ -55,20 +55,20 @@
    <center>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <SplitMenuButton mnemonicParsing="false" text="Podaj katalog">
+            <SplitMenuButton fx:id="menuButton" mnemonicParsing="false" text="Podaj katalog">
               <items>
-                <MenuItem mnemonicParsing="false" text="Podaj ściężkę do katalogu" />
+                <MenuItem fx:id="addFilesButtonItem" mnemonicParsing="false" text="Podaj ściężkę do katalogu" />
               </items>
                <VBox.margin>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </VBox.margin>
             </SplitMenuButton>
-            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Rozpocznij">
+            <Button fx:id="startButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Rozpocznij">
                <VBox.margin>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </VBox.margin>
             </Button>
-            <Button alignment="CENTER" mnemonicParsing="false" text="Zakończ" textAlignment="CENTER">
+            <Button fx:id="endButton" alignment="CENTER" mnemonicParsing="false" onAction="#exit" text="Zakończ" textAlignment="CENTER">
                <VBox.margin>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </VBox.margin>
