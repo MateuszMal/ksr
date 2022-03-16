@@ -13,7 +13,11 @@ import java.util.stream.Collectors;
 
 @Slf4j
 public class ReadSgmFile {
-    private final String PATH = "data";
+    private final String path;
+
+    public ReadSgmFile(String path) {
+        this.path = path;
+    }
 
     public List<List<String>> readFiles() {
         return getFilesFromDirectory().stream()
@@ -23,13 +27,13 @@ public class ReadSgmFile {
 
     private List<File> getFilesFromDirectory() {
         try {
-            return Files.walk(Paths.get(PATH))
+            return Files.walk(Paths.get(path))
                     .filter(Files::isRegularFile)
                     .map(Path::toFile)
                     .collect(Collectors.toList());
         } catch (IOException e) {
             log.info(e.getMessage());
-            throw new RuntimeException("Error while reading files in directory" + PATH);
+            throw new RuntimeException("Error while reading files in directory" + path);
         }
     }
 

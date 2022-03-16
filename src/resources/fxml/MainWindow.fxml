@@ -11,18 +11,18 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" style="-fx-background-color: #cce6ff;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.MainWindowController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" style="-fx-background-color: #cce6ff;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controllers.MainWindowController">
    <bottom>
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Autorzy: Piotr Lewiński &amp; Mateusz Malenta" BorderPane.alignment="CENTER" />
    </bottom>
    <top>
       <VBox prefHeight="83.0" prefWidth="601.0" BorderPane.alignment="CENTER">
          <children>
-            <MenuBar>
+            <MenuBar fx:id="menuBar">
               <menus>
                 <Menu mnemonicParsing="false" text="Plik">
                   <items>
-                    <MenuItem fx:id="addFiles" mnemonicParsing="false" text="Dodaj pliki" />
+                    <MenuItem fx:id="addFiles" mnemonicParsing="false" onAction="#chooseDirectoryFromMenuItem" text="Dodaj pliki" />
                         <MenuItem fx:id="endItem" mnemonicParsing="false" onAction="#exit" text="Zakończ" />
                   </items>
                 </Menu>
@@ -30,7 +30,7 @@
                   <items>
                     <MenuItem fx:id="stopListItem" mnemonicParsing="false" text="Stop lista" />
                         <MenuItem fx:id="measuresChoice" mnemonicParsing="false" text="Wybór miar" />
-                        <MenuItem fx:id="attributesChoice" mnemonicParsing="false" text="Wybór cech" />
+                        <MenuItem fx:id="attributesChoice" mnemonicParsing="false" onAction="#chooseAttributes" text="Wybór cech" />
                         <MenuItem fx:id="percentageScope" mnemonicParsing="false" text="Zakres procentowy" />
                   </items>
                 </Menu>
@@ -55,7 +55,7 @@
    <center>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <SplitMenuButton fx:id="menuButton" mnemonicParsing="false" text="Podaj katalog">
+            <SplitMenuButton fx:id="menuButton" mnemonicParsing="false" onAction="#chooseDirectoryFromButton" text="Podaj katalog">
               <items>
                 <MenuItem fx:id="addFilesButtonItem" mnemonicParsing="false" text="Podaj ściężkę do katalogu" />
               </items>
@@ -68,7 +68,7 @@
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="endButton" alignment="CENTER" mnemonicParsing="false" onAction="#exit" text="Zakończ" textAlignment="CENTER">
+            <Button fx:id="endButton" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#exit" text="Zakończ" textAlignment="CENTER">
                <VBox.margin>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </VBox.margin>
