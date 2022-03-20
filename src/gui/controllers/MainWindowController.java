@@ -80,6 +80,19 @@ public class MainWindowController {
         showNewStage("/resources/fxml/ChooseAttributes.fxml");
     }
 
+    public void onMeasureChoiceItem(){
+        showNewStage("/resources/fxml/ChooseMeasures.fxml");
+    }
+
+    public void onStopListItem(){
+        showNewStage("/resources/fxml/StopListStage.fxml");
+    }
+
+    public void onAboutProgram(){
+        showNewStage("/resources/fxml/AboutWindow.fxml");
+    }
+
+
     public void exit() {
         log.info("Shutting down by user");
         System.exit(0);
@@ -90,7 +103,7 @@ public class MainWindowController {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainWindowController.class.getResource(path));
 
-            Scene scene = new Scene(loader.load()/*, 355,510*/);
+            Scene scene = new Scene(loader.load());
             Stage stage = new Stage();
             stage.setTitle("KSR");
             stage.setScene(scene);
