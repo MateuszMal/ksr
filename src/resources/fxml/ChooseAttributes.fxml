@@ -9,16 +9,15 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="510.0" prefWidth="355.0" style="-fx-background-color: #cce6ff;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controllers.ChooseAttributesController">
    <children>
       <VBox alignment="TOP_CENTER" prefHeight="510.0" prefWidth="355.0">
          <children>
-            <MenuBar prefHeight="29.0" prefWidth="206.0">
+            <MenuBar fx:id="menuBar" prefHeight="29.0" prefWidth="206.0">
               <menus>
                 <Menu mnemonicParsing="false" text="Plik">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="Zamknij" />
+                    <MenuItem fx:id="endItem" mnemonicParsing="false" onAction="#onEndItem" text="Zamknij" />
                   </items>
                 </Menu>
               </menus>
@@ -73,7 +72,7 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
             </RadioButton>
-            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="28.0" prefWidth="182.0" text="Wybierz" textAlignment="CENTER">
+            <Button fx:id="choiceButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onChoiceButton" prefHeight="28.0" prefWidth="182.0" text="Wybierz" textAlignment="CENTER">
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin>

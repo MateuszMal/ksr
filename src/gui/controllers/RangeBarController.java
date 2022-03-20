@@ -4,15 +4,18 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.Slider;
 import javafx.stage.Stage;
 
-public class ChooseAttributesController {
+public class RangeBarController {
+    @FXML
+    private Slider slider;
     @FXML
     private Button choiceButton;
     @FXML
-    private MenuItem endItem;
-    @FXML
     private MenuBar menuBar;
+    @FXML
+    private MenuItem endItem;
 
     @FXML
     void initialize() {

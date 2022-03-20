@@ -31,7 +31,7 @@
                     <MenuItem fx:id="stopListItem" mnemonicParsing="false" text="Stop lista" />
                         <MenuItem fx:id="measuresChoice" mnemonicParsing="false" text="Wybór miar" />
                         <MenuItem fx:id="attributesChoice" mnemonicParsing="false" onAction="#chooseAttributes" text="Wybór cech" />
-                        <MenuItem fx:id="percentageScope" mnemonicParsing="false" text="Zakres procentowy" />
+                        <MenuItem fx:id="percentageScope" mnemonicParsing="false" onAction="#onPercentageScopeItem" text="Zakres procentowy" />
                   </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Pomoc">

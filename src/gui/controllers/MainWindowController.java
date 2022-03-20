@@ -67,17 +67,30 @@ public class MainWindowController {
         File directory = directoryChooser.showDialog(stage); // path to directory
         try {
             return directory.getPath();
-        } catch (NullPointerException e) {
-            throw new RuntimeException();
+        } catch (Exception e) {
+            throw new RuntimeException("User does not chose directory");
         }
     }
 
+    public void onPercentageScopeItem(){
+        showNewStage("/resources/fxml/RangeBar.fxml");
+    }
+
     public void chooseAttributes() {
+        showNewStage("/resources/fxml/ChooseAttributes.fxml");
+    }
+
+    public void exit() {
+        log.info("Shutting down by user");
+        System.exit(0);
+    }
+
+    private void showNewStage(String path) {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainWindowController.class.getResource("/resources/fxml/ChooseAttributes.fxml"));
+            loader.setLocation(MainWindowController.class.getResource(path));
 
-            Scene scene = new Scene(loader.load(), 355,510);
+            Scene scene = new Scene(loader.load()/*, 355,510*/);
             Stage stage = new Stage();
             stage.setTitle("KSR");
             stage.setScene(scene);
@@ -85,11 +98,6 @@ public class MainWindowController {
         } catch (IOException e){
             log.error("Failed to load new scene");
         }
-    }
-
-    public void exit() {
-        log.info("Shutting down by user");
-        System.exit(0);
     }
 
 }
