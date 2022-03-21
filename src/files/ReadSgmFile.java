@@ -1,5 +1,6 @@
 package files;
 
+import lombok.Builder;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.File;
@@ -12,8 +13,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Slf4j
+@Builder
 public class ReadSgmFile {
-    private final String PATH = "data";
+    private final String path;
+
+    public ReadSgmFile(String path) {
+        this.path = path;
+    }
 
     public List<List<String>> readFiles() {
         return getFilesFromDirectory().stream()
@@ -23,12 +29,13 @@ public class ReadSgmFile {
 
     private List<File> getFilesFromDirectory() {
         try {
-            return Files.walk(Paths.get(PATH))
+            return Files.walk(Paths.get(path))
                     .filter(Files::isRegularFile)
                     .map(Path::toFile)
                     .collect(Collectors.toList());
         } catch (IOException e) {
-            throw new RuntimeException("Error while reading files in directory" + PATH);
+            log.info(e.getMessage());
+            throw new RuntimeException("Error while reading files in directory" + path);
         }
     }
 

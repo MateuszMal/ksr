@@ -14,7 +14,7 @@ public class ExtractFiles {
     private final Pattern ARTICLE_PATTERN = Pattern.compile("<PLACES>(.*?)</TEXT>");
     private final Pattern PLACES_PATTERN = Pattern.compile("<D>(.*?)</D></PLACES>");
     private final List<String> countries = List.of("west-germany", "usa", "france", "uk", "canada", "japan");
-    StringBuilder buffer = new StringBuilder();
+    private final StringBuilder buffer = new StringBuilder();
     private final List<String> filteredByTags = new ArrayList<>();
 
     public HashMap<String, List<String>> countriesAndArticles(List<String> files) {
