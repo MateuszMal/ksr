@@ -1,3 +1,5 @@
+import attribute.WordOccurrenceMatrix;
+import commons.StringFormatter;
 import files.ExtractFiles;
 import files.ReadSgmFile;
 
@@ -17,5 +19,19 @@ public class Main {
             System.out.println(entry.getKey() + " : " + entry.getValue());
             System.out.println("/////////////////");
         }
+
+        StringFormatter.format_whole_hash_map(articles);
+
+        WordOccurrenceMatrix matrix = new WordOccurrenceMatrix(articles);
+
+        matrix.print_matrix();
+
+        matrix.count_for_whole_database2(articles);
+
+        matrix.print_matrix();
+
+        System.out.println(matrix.get_word_that_occurred_the_most("usa"));
+
+
     }
 }
