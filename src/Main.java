@@ -1,3 +1,5 @@
+import attribute.WordOccurrenceMatrix;
+import commons.StringFormatter;
 import files.ExtractFiles;
 import files.ReadSgmFile;
 import javafx.application.Application;
@@ -27,16 +29,29 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
-        launch();
-//        ReadSgmFile f = new ReadSgmFile("data/reut2-017.sgm");
-//        List<List<String>> files = f.readFiles();
-//
-//        ExtractFiles ex = new ExtractFiles();
-//
-//        HashMap<String, List<String>> articles = ex.countriesAndArticles(files.get(0));
-//        for (Map.Entry<String, List<String>> entry : articles.entrySet()) {
-//            System.out.println(entry.getKey() + " : " + entry.getValue());
-//            System.out.println("/////////////////");
-//        }
+//        launch();
+        ReadSgmFile f = new ReadSgmFile("data/reut2-017.sgm");
+        List<List<String>> files = f.readFiles();
+
+        ExtractFiles ex = new ExtractFiles();
+
+        HashMap<String, List<String>> articles = ex.countriesAndArticles(files.get(0));
+        for (Map.Entry<String, List<String>> entry : articles.entrySet()) {
+            System.out.println(entry.getKey() + " : " + entry.getValue());
+            System.out.println("/////////////////");
+        }
+
+        StringFormatter.format_whole_hash_map(articles);
+
+        WordOccurrenceMatrix matrix = new WordOccurrenceMatrix(articles);
+
+        matrix.print_matrix();
+
+        matrix.count_for_whole_database2(articles);
+
+        matrix.print_matrix();
+
+        System.out.println(matrix.get_word_that_occurred_the_most("usa"));
+
     }
 }
