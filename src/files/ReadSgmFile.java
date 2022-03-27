@@ -1,6 +1,5 @@
 package files;
 
-import lombok.Builder;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.File;
@@ -13,7 +12,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Slf4j
-@Builder
 public class ReadSgmFile {
     private final String path;
 

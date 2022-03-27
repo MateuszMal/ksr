@@ -10,7 +10,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="325.0" prefWidth="512.0" style="-fx-background-color: #cce6ff;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controllers.RangeBarController">
    <top>
       <MenuBar fx:id="menuBar" BorderPane.alignment="CENTER">
@@ -26,7 +25,7 @@
    <center>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <Slider fx:id="slider" value="10.0">
+            <Slider fx:id="slider" majorTickUnit="10.0" showTickLabels="true" showTickMarks="true" value="10.0">
                <VBox.margin>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </VBox.margin>
