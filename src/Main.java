@@ -30,7 +30,7 @@ public class Main extends Application {
 
     public static void main(String[] args) {
 //        launch();
-        ReadSgmFile f = new ReadSgmFile("data/reut2-017.sgm");
+        ReadSgmFile f = new ReadSgmFile("data");
         List<List<String>> files = f.readFiles();
 
         ExtractFiles ex = new ExtractFiles();
@@ -40,18 +40,5 @@ public class Main extends Application {
             System.out.println(entry.getKey() + " : " + entry.getValue());
             System.out.println("/////////////////");
         }
-
-        StringFormatter.format_whole_hash_map(articles);
-
-        WordOccurrenceMatrix matrix = new WordOccurrenceMatrix(articles);
-
-        matrix.print_matrix();
-
-        matrix.count_for_whole_database2(articles);
-
-        matrix.print_matrix();
-
-        System.out.println(matrix.get_word_that_occurred_the_most("usa"));
-
     }
 }

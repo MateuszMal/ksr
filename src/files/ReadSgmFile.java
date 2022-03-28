@@ -37,7 +37,6 @@ public class ReadSgmFile {
         }
     }
 
-
     private List<String> fileLineLoader(File file) {
         try {
             return Files.readAllLines(Paths.get(file.getAbsolutePath()), StandardCharsets.ISO_8859_1);
