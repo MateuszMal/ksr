@@ -1,7 +1,6 @@
-import attribute.WordOccurrenceMatrix;
-import commons.StringFormatter;
 import files.ExtractFiles;
 import files.ReadSgmFile;
+import files.StopList;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -35,7 +34,12 @@ public class Main extends Application {
 
         ExtractFiles ex = new ExtractFiles();
 
+        StopList stopList = new StopList();
+
         HashMap<String, List<String>> articles = ex.countriesAndArticles(files.get(0));
+
+        Map<String, List<String>> stringListMap = stopList.removeWords(articles);
+
         for (Map.Entry<String, List<String>> entry : articles.entrySet()) {
             System.out.println(entry.getKey() + " : " + entry.getValue());
             System.out.println("/////////////////");

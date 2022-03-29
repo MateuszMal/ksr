@@ -44,15 +44,15 @@ public class ExtractFiles {
         return filteredByTags;
     }
 
-    private void filterArticles(HashMap<String, List<String>> articlesMap){
-        for(Map.Entry<String, List<String>> entry : articlesMap.entrySet()){
+    private void filterArticles(HashMap<String, List<String>> articlesMap) {
+        for (Map.Entry<String, List<String>> entry : articlesMap.entrySet()) {
             entry.setValue(removeUnnecessaryStrings(entry.getValue()));
         }
     }
 
-    private List<String> removeUnnecessaryStrings(List<String> articles){
-        String[] META_CHARS = { "&", "<", ">", "\"", "'" };
-        String[] META_CHARS_SERIALIZATIONS = { "&amp;", "&lt;", "&gt;", "&quot;", "&apos;" };
+    private List<String> removeUnnecessaryStrings(List<String> articles) {
+        String[] META_CHARS = {"&", "<", ">", "\"", "'"};
+        String[] META_CHARS_SERIALIZATIONS = {"&amp;", "&lt;", "&gt;", "&quot;", "&apos;"};
 
         for (int i = 0; i < articles.size(); i++) {
             for (int j = 0; j < META_CHARS_SERIALIZATIONS.length; j++) {

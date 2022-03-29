@@ -19,6 +19,14 @@ public class ReadSgmFile {
         this.path = path;
     }
 
+    public static List<String> fileReader(String path) {
+        try {
+            return Files.readAllLines(Paths.get(path));
+        } catch (IOException e) {
+            throw new RuntimeException(String.format("Error while reading lines from file %s", path));
+        }
+    }
+
     public List<List<String>> readFiles() {
         return getFilesFromDirectory().stream()
                 .map(this::fileLineLoader)
@@ -42,7 +50,7 @@ public class ReadSgmFile {
             return Files.readAllLines(Paths.get(file.getAbsolutePath()), StandardCharsets.ISO_8859_1);
         } catch (IOException e) {
             log.info(e.getMessage());
-            throw new RuntimeException("Error while reading lines from file: " + file);
+            throw new RuntimeException(String.format("Error while reading lines from file %s", file));
         }
     }
 }
