@@ -19,7 +19,8 @@ public class Stemming {
         pipeline = new StanfordCoreNLP(props);
     }
 
-    public List<String> lemmatize(String text) {
+
+    public String lemmatize(String text) {
         List<String> lemmas = new LinkedList<>();
         Annotation document = new Annotation(text);
         pipeline.annotate(document);
@@ -29,6 +30,8 @@ public class Stemming {
                 lemmas.add(token.get(CoreAnnotations.LemmaAnnotation.class));
             }
         }
-        return lemmas;
+        var article = String.join(" ", lemmas);
+        var articleWithComas = article.replaceAll(" ,", ",");
+        return articleWithComas.replaceAll(" \\.", ".");
     }
 }

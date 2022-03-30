@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import lemmatization.Stemming;
 
 import java.util.HashMap;
 import java.util.List;
@@ -39,7 +40,6 @@ public class Main extends Application {
         HashMap<String, List<String>> articles = ex.countriesAndArticles(files.get(0));
 
         Map<String, List<String>> stringListMap = stopList.removeWords(articles);
-
 
     }
 }
