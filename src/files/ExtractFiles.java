@@ -5,6 +5,7 @@ import lombok.Getter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -20,12 +21,14 @@ public class ExtractFiles {
     public HashMap<String, List<String>> countriesAndArticles(List<String> files) {
         HashMap<String, List<String>> articles = new HashMap<>();
         searchByCountries(getPlace(files), articles);
+        filterArticles(articles);
         return articles;
     }
 
     private List<String> getPlace(List<String> lines) {
         for (String line : lines) {
             buffer.append(line);
+            buffer.append(" ");
         }
         Matcher matcher = ARTICLE_PATTERN.matcher(buffer);
 
@@ -39,6 +42,26 @@ public class ExtractFiles {
             }
         }
         return filteredByTags;
+    }
+
+    private void filterArticles(HashMap<String, List<String>> articlesMap) {
+        for (Map.Entry<String, List<String>> entry : articlesMap.entrySet()) {
+            entry.setValue(removeUnnecessaryStrings(entry.getValue()));
+        }
+    }
+
+    private List<String> removeUnnecessaryStrings(List<String> articles) {
+        String[] META_CHARS = {"&", "<", ">", "\"", "'"};
+        String[] META_CHARS_SERIALIZATIONS = {"&amp;", "&lt;", "&gt;", "&quot;", "&apos;"};
+
+        for (int i = 0; i < articles.size(); i++) {
+            for (int j = 0; j < META_CHARS_SERIALIZATIONS.length; j++) {
+                articles.set(i, articles.get(i).replaceAll(META_CHARS_SERIALIZATIONS[j], META_CHARS[j]));
+            }
+            articles.set(i, articles.get(i).substring(0, articles.get(i).length() - 12));
+            articles.set(i, articles.get(i).trim().replaceAll(" +", " "));
+        }
+        return articles;
     }
 
     private void searchByCountries(List<String> articles, HashMap<String, List<String>> articlesMap) {

@@ -1,6 +1,5 @@
 package files;
 
-import lombok.Builder;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.File;
@@ -13,12 +12,19 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Slf4j
-@Builder
 public class ReadSgmFile {
     private final String path;
 
     public ReadSgmFile(String path) {
         this.path = path;
+    }
+
+    public static List<String> fileReader(String path) {
+        try {
+            return Files.readAllLines(Paths.get(path));
+        } catch (IOException e) {
+            throw new RuntimeException(String.format("Error while reading lines from file %s", path));
+        }
     }
 
     public List<List<String>> readFiles() {
@@ -39,13 +45,12 @@ public class ReadSgmFile {
         }
     }
 
-
     private List<String> fileLineLoader(File file) {
         try {
             return Files.readAllLines(Paths.get(file.getAbsolutePath()), StandardCharsets.ISO_8859_1);
         } catch (IOException e) {
             log.info(e.getMessage());
-            throw new RuntimeException("Error while reading lines from file: " + file);
+            throw new RuntimeException(String.format("Error while reading lines from file %s", file));
         }
     }
 }
