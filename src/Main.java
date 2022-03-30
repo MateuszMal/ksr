@@ -40,9 +40,6 @@ public class Main extends Application {
 
         Map<String, List<String>> stringListMap = stopList.removeWords(articles);
 
-        for (Map.Entry<String, List<String>> entry : articles.entrySet()) {
-            System.out.println(entry.getKey() + " : " + entry.getValue());
-            System.out.println("/////////////////");
-        }
+
     }
 }
