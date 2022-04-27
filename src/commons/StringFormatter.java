@@ -43,6 +43,9 @@ public class StringFormatter {
         output = output.replace("  ", " ");
         output = output.replace("?", ".");
         output = output.replace("+", " ");
+        output = output.replace("[", "");
+        output = output.replace("]", "");
+        output = output.replace("*", "");
 
 
         return output;
