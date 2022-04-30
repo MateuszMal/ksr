@@ -28,6 +28,7 @@ public class ExtractFiles {
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
+        executor.shutdown();
         filterArticles(articles);
         return articles;
     }

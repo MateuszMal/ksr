@@ -4,6 +4,7 @@ import lombok.Getter;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -17,13 +18,7 @@ public class StopList {
         stopList = ReadSgmFile.fileReader(STOP_LIST_FILE);
     }
 
-    /**
-     * Removing from articles' map all words from stop list
-     *
-     * @param articles Map<String, List<String>> countries withs articles
-     * @return map with articles WITHOUT comas and dots
-     */
-    public Map<String, List<String>> removeWords(Map<String, List<String>> articles) {
+    public HashMap<String, List<String>> removeWords(HashMap<String, List<String>> articles) {
         for (Map.Entry<String, List<String>> entry : articles.entrySet()) {
             List<String> articleList = entry.getValue();
             for (int i = 0; i < articleList.size(); i++) {

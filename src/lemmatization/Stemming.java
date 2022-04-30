@@ -7,11 +7,9 @@ import edu.stanford.nlp.pipeline.StanfordCoreNLP;
 import edu.stanford.nlp.util.CoreMap;
 
 import java.util.*;
-import java.util.concurrent.*;
 
 public class Stemming {
     protected static StanfordCoreNLP pipeline;
-//    private static final ExecutorService executor = Executors.newFixedThreadPool(10);
 
     public Stemming() {
         Properties props = new Properties();
@@ -25,26 +23,10 @@ public class Stemming {
             for (int i = 0; i < articleList.size(); i++) {
                 String articleAfterLemma = lemmatize(articleList.get(i));
                 articleList.set(i, articleAfterLemma);
-//                Future<String> articleAfterLemma = executor.submit(expensive(articleList.get(i)));
-//                try {
-//                    articleList.set(i, articleAfterLemma.get());
-//                } catch (InterruptedException | ExecutionException e) {
-//                    e.printStackTrace();
-//                }
             }
-//            executor.shutdown();
         }
         return articles;
     }
-
-//    Callable<String> expensive(final String param) {
-//        return new Callable<String>() {
-//            @Override
-//            public String call() throws Exception {
-//                return lemmatize(param);
-//            }
-//        };
-//    }
 
     private String lemmatize(String text) {
         List<String> lemmas = new LinkedList<>();

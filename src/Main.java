@@ -17,7 +17,6 @@ import summary.Summary;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Main extends Application {
 
@@ -46,12 +45,11 @@ public class Main extends Application {
         StopList stopList = new StopList();
 
         HashMap<String, List<String>> articles = extractFiles.countriesAndArticles(files);
-        Map<String, List<String>> articlesAfterStopList = stopList.removeWords(articles);
+        HashMap<String, List<String>> articlesAfterStopList = stopList.removeWords(articles);
 
         Stemming stemming = new Stemming();
-        HashMap<String, List<String>> articlesAfterStemming = stemming.lemmtizeArticles(articles);
+        HashMap<String, List<String>> articlesAfterStemming = stemming.lemmtizeArticles(articlesAfterStopList);
 
-//        Map<String, List<String>> stringListMap = stopList.removeWords(articles);
         StringFormatter.format_whole_hash_map(articlesAfterStemming);
 
         StringFormatter.format_whole_hash_map(articlesAfterStemming);
