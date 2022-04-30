@@ -17,8 +17,6 @@ import summary.Summary;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collector;
 
 public class Main extends Application {
 
@@ -38,33 +36,29 @@ public class Main extends Application {
 
     public static void main(String[] args) {
 //        launch();
+        long startTime = System.nanoTime();
         ReadSgmFile f = new ReadSgmFile("data");
-        List<List<String>> files = f.readFiles();
+        List<String> files = f.readFiles();
 
-        ExtractFiles ex = new ExtractFiles();
+        ExtractFiles extractFiles = new ExtractFiles();
 
-//        StopList stopList = new StopList();
+        StopList stopList = new StopList();
 
-        HashMap<String, List<String>> articles = ex.countriesAndArticles(files.get(0));
+        HashMap<String, List<String>> articles = extractFiles.countriesAndArticles(files);
+        HashMap<String, List<String>> articlesAfterStopList = stopList.removeWords(articles);
 
         Stemming stemming = new Stemming();
-        HashMap<String, List<String>> stringListMap1 = stemming.lemmtizeArticles(articles);
+        HashMap<String, List<String>> articlesAfterStemming = stemming.lemmtizeArticles(articlesAfterStopList);
 
-//        Map<String, List<String>> stringListMap = stopList.removeWords(articles);
-        StringFormatter.format_whole_hash_map(stringListMap1);
+        StringFormatter.format_whole_hash_map(articlesAfterStemming);
 
-        StringFormatter.format_whole_hash_map(stringListMap1);
+        StringFormatter.format_whole_hash_map(articlesAfterStemming);
 
-        ArrayList<String> bag_of_words = CategoryKeyword_Manager.create_and_return_bag_of_words(CategoryKeyword_Manager.create_category_keywords_hash_map_static(stringListMap1, 10)); ///bag of words
+        ArrayList<String> bag_of_words = CategoryKeyword_Manager.create_and_return_bag_of_words(CategoryKeyword_Manager.create_category_keywords_hash_map_static(articlesAfterStemming, 10)); ///bag of words
 
-        for(String s : bag_of_words)
-        {
-            System.out.println(s);
-        }
+        HashMap<String, ArrayList<CharacteristicsVector>> test_vector_Map = CharactericticsVector_Manager.create_and_return_characteristics_vectors_map_static_final(articlesAfterStemming, bag_of_words); ////// tworzenie wektorow
 
-        HashMap<String, ArrayList<CharacteristicsVector>> test_vector_Map = CharactericticsVector_Manager.create_and_return_characteristics_vectors_map_static_final(stringListMap1, bag_of_words); ////// tworzenie wektorow
-
-        int [] parameters_switch = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
+        int[] parameters_switch = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
 
         int metric_switch = 3;
 
@@ -82,7 +76,9 @@ public class Main extends Application {
         test_summary.print_metrics();
 
         System.out.println("//////////////////////");
-
-        System.exit(1);
+        long endTime = System.nanoTime();
+        System.out.println(endTime - startTime);
+        System.out.println((endTime - startTime) / 1000000000);
+        System.exit(0);
     }
 }

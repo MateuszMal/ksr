@@ -74,7 +74,7 @@ public class Algorithm {
 
         //////zliczanie end
 
-        System.out.println("Should be: " + v1.getCategory() + " classified: " + most_represented_category);
+//        System.out.println("Should be: " + v1.getCategory() + " classified: " + most_represented_category);
 
     }
 
@@ -116,7 +116,7 @@ public class Algorithm {
 
         Collections.sort(category_scores, new string_double_container_comparator());
 
-        System.out.println();
+//        System.out.println();
 
         while(category_scores.size() > k)
         {

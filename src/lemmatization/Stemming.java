@@ -17,10 +17,10 @@ public class Stemming {
         pipeline = new StanfordCoreNLP(props);
     }
 
-    public HashMap<String, List<String>> lemmtizeArticles(HashMap<String, List<String>> articles){
-        for(Map.Entry<String, List<String>> entry : articles.entrySet()){
+    public HashMap<String, List<String>> lemmtizeArticles(HashMap<String, List<String>> articles) {
+        for (Map.Entry<String, List<String>> entry : articles.entrySet()) {
             List<String> articleList = entry.getValue();
-            for(int i = 0; i < articleList.size(); i++){
+            for (int i = 0; i < articleList.size(); i++) {
                 String articleAfterLemma = lemmatize(articleList.get(i));
                 articleList.set(i, articleAfterLemma);
             }

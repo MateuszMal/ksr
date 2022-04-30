@@ -27,7 +27,7 @@ public class ReadSgmFile {
         }
     }
 
-    public List<List<String>> readFiles() {
+    public List<String> readFiles() {
         return getFilesFromDirectory().stream()
                 .map(this::fileLineLoader)
                 .collect(Collectors.toList());
@@ -45,9 +45,9 @@ public class ReadSgmFile {
         }
     }
 
-    private List<String> fileLineLoader(File file) {
+    private String fileLineLoader(File file) {
         try {
-            return Files.readAllLines(Paths.get(file.getAbsolutePath()), StandardCharsets.ISO_8859_1);
+            return String.join(" ", Files.readAllLines(Paths.get(file.getAbsolutePath()), StandardCharsets.ISO_8859_1));
         } catch (IOException e) {
             log.info(e.getMessage());
             throw new RuntimeException(String.format("Error while reading lines from file %s", file));

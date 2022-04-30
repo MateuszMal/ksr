@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -17,10 +18,17 @@ public class ExtractFiles {
     private final List<String> countries = List.of("west-germany", "usa", "france", "uk", "canada", "japan");
     private final StringBuilder buffer = new StringBuilder();
     private final List<String> filteredByTags = new ArrayList<>();
+    private static final ExecutorService executor = Executors.newFixedThreadPool(10);
 
     public HashMap<String, List<String>> countriesAndArticles(List<String> files) {
         HashMap<String, List<String>> articles = new HashMap<>();
-        searchByCountries(getPlace(files), articles);
+        Future<List<String>> places = executor.submit(expensive(files));
+        try {
+            searchByCountries(places.get(), articles);
+        } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+        }
+        executor.shutdown();
         filterArticles(articles);
         return articles;
     }
@@ -103,6 +111,15 @@ public class ExtractFiles {
         if (countryMatcher.find() && bodyMatcher.find()) {
             articlesMap.computeIfAbsent(countryMatcher.group(1), k -> new ArrayList<>()).add(bodyMatcher.group(1));
         }
+    }
+
+    Callable<List<String>> expensive(final List<String> lines) {
+        return new Callable<List<String>>() {
+            @Override
+            public List<String> call() throws Exception {
+                return getPlace(lines);
+            }
+        };
     }
 
 }
