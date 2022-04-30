@@ -30,17 +30,17 @@
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </VBox.margin>
             </Text>
-            <RadioButton alignment="CENTER_LEFT" mnemonicParsing="false" prefHeight="18.0" prefWidth="107.0" text="Euklidesowa">
+            <RadioButton fx:id="euclides" alignment="CENTER_LEFT" mnemonicParsing="false" prefHeight="18.0" prefWidth="107.0" text="Euklidesowa">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
             </RadioButton>
-            <RadioButton alignment="CENTER_LEFT" mnemonicParsing="false" prefHeight="18.0" prefWidth="108.0" text="Uliczna">
+            <RadioButton fx:id="street" alignment="CENTER_LEFT" mnemonicParsing="false" prefHeight="18.0" prefWidth="108.0" text="Uliczna">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
             </RadioButton>
-            <RadioButton contentDisplay="CENTER" mnemonicParsing="false" prefHeight="18.0" prefWidth="107.0" text="Czebyszewa">
+            <RadioButton fx:id="czebyszew" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="18.0" prefWidth="107.0" text="Czebyszewa">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
