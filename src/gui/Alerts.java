@@ -10,4 +10,11 @@ public class Alerts {
         warning.setContentText(message);
         warning.showAndWait();
     }
+    public static void result(String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Wyniki");
+        alert.setHeaderText("Wyniki");
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
 }

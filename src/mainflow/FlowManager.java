@@ -7,6 +7,8 @@ import files.ReadSgmFile;
 import files.StopList;
 import keywords.CategoryKeyword_Manager;
 import lemmatization.Stemming;
+import lombok.Getter;
+import lombok.Setter;
 import my_vectors.CharactericticsVector_Manager;
 import my_vectors.CharacteristicsVector;
 import summary.Summary;
@@ -15,19 +17,20 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+@Getter
+@Setter
 public class FlowManager {
-    private final String dirPath;
-    private final ReadSgmFile readSgmFile;
+    private String dirPath = "data"; // todo change to default
+    private ReadSgmFile readSgmFile;
     private final ExtractFiles extractFiles = new ExtractFiles();
     private final StopList stopList = new StopList();
+    private int metricSwitch = 3;
+    private int[] parametersSwitch = new int[]{1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
+    private double percentage = 0.5;
 
-    public FlowManager(String dirPath) {
-        this.dirPath = dirPath;
-        this.readSgmFile = new ReadSgmFile(dirPath);
-    }
-
-    public void startAlgorithm() {
+    public String startAlgorithm() {
         long startTime = System.nanoTime();
+        readSgmFile = new ReadSgmFile(dirPath);
         List<String> sgmFiles = readSgmFile.readFiles();
 
         HashMap<String, List<String>> articles = extractFiles.countriesAndArticles(sgmFiles);
@@ -46,9 +49,6 @@ public class FlowManager {
                 articlesAfterStemming,
                 bagOfWords);
 
-        int[] parametersSwitch = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1}; //todo this should be taken from user
-        int metricSwitch = 3; // todo this should be taken from user
-        double percentage = 0.5; //todo this should be taken from user
         int k = 1;
 
         Algorithm algorithm = new Algorithm(vectorsMap);
@@ -61,11 +61,11 @@ public class FlowManager {
         Summary summary = new Summary(algorithm.getA_test_set());
         summary.determine_TP_TN_FP_FN_for_whole_test_set();
 
-        summary.print_metrics();
 
         System.out.println("##############");
         long endTime = System.nanoTime();
         System.out.println((endTime - startTime) / 1000000000);
+        return summary.print_metrics();
 
     }
 }

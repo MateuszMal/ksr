@@ -1,11 +1,13 @@
 package gui.controllers;
 
+import gui.Alerts;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.Slider;
 import javafx.stage.Stage;
+import mainflow.DataHolder;
 
 public class RangeBarController {
     @FXML
@@ -16,6 +18,7 @@ public class RangeBarController {
     private MenuBar menuBar;
     @FXML
     private MenuItem endItem;
+    DataHolder dataHolder = DataHolder.getInstance();
 
     @FXML
     void initialize() {
@@ -23,7 +26,16 @@ public class RangeBarController {
 
     public void onChoiceButton(){
         Stage stage = (Stage) choiceButton.getScene().getWindow();
-        stage.close();
+        boolean isChosen = false;
+        if(slider.getValue() != 0) {
+            dataHolder.setTestingRange(slider.getValue());
+            isChosen = true;
+        } else {
+            Alerts.alertMsg("Podaj wartość większą od 0");
+        }
+        if (isChosen) {
+            stage.close();
+        }
     }
 
     public void onEndItem(){

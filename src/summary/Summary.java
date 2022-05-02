@@ -20,9 +20,9 @@ public class Summary {
         measured_vectors = a_test_set;
     }
 
-    public void print_metrics()
+    public String print_metrics()
     {
-
+        StringBuilder result = new StringBuilder();
         double N = 0.0;
         double TP_total = 0.0;
         double TN_total = 0.0;
@@ -35,6 +35,7 @@ public class Summary {
         }
 
         System.out.println("Accurracy: " + ((TP_total + TN_total) / N) );
+        result.append("Accuracy: ").append((TP_total + TN_total) / N).append("\n");
 
         ///////Precision
 
@@ -45,11 +46,13 @@ public class Summary {
             if(PP == 0)
             {
                 System.out.println("Precision for " + s + " " + 0.0);
+                result.append("Precision for ").append(s).append(" ").append(0.0).append("\n");
             }
 
             else
             {
                 System.out.println("Precision for " + s + " " + (TP.get(s) / PP) );
+                result.append("Precision for ").append(s).append(" ").append(TP.get(s) / PP).append("\n");
             }
         }
 
@@ -59,6 +62,7 @@ public class Summary {
         {
             double recall = (TP.get(s) / (double)measured_vectors.get(s).size());
             System.out.println("Recall for " + s + " " +  recall);
+            result.append("Recall for ").append(s).append(" ").append(recall).append("\n");
         }
 
         ////f1
@@ -67,8 +71,9 @@ public class Summary {
         {
             double f1 = (double) (2 * TP.get(s)) / (2 * TP.get(s) + FN.get(s) + FP.get(s));
             System.out.println("f1 for " + s + " " + f1);
+            result.append("f1 for ").append(s).append(" ").append(f1).append("\n");
         }
-
+        return result.toString();
     }
 
     public void determine_TP_TN_FP_FN_for_whole_test_set()

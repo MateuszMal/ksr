@@ -33,13 +33,13 @@ public class ChooseMeasuresController {
         Stage stage = (Stage) choiceButton.getScene().getWindow();
         boolean isChosen = false;
         if (euclides.isSelected() && !street.isSelected() && !czebyszew.isSelected()) {
-            dataHolder.setMeasure(1);
+            dataHolder.setMetricSwitch(1);
             isChosen = true;
         } else if (street.isSelected() && !euclides.isSelected() && !czebyszew.isSelected()) {
-            dataHolder.setMeasure(2);
+            dataHolder.setMetricSwitch(2);
             isChosen = true;
         } else if (czebyszew.isSelected() && !euclides.isSelected() && !street.isSelected()) {
-            dataHolder.setMeasure(3);
+            dataHolder.setMetricSwitch(3);
             isChosen = true;
         } else if (!euclides.isSelected() && !street.isSelected() && !czebyszew.isSelected()) {
             Alerts.alertMsg("Wybierz jedna metryke");
