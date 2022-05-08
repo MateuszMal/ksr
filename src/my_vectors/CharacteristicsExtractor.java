@@ -133,9 +133,7 @@ public class CharacteristicsExtractor {
         String output = "";
 
         for (int i = 0; i < words.length; i++) {
-//            if (!StringUtils.isBlank(words[i])) {//todo remove
                 String counter_string = words[i];
-//                System.out.println(counter_string);//todo remove
                 String[] occurrence_counter = temp.split(counter_string);
 
                 if (counter_string.length() > numberOfCharacters && (occurrence_counter.length - 1) > max_occurrence) {
@@ -144,7 +142,6 @@ public class CharacteristicsExtractor {
                 }
 
             }
-//        }//todo remove
         return output;
     }
 

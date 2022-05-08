@@ -44,8 +44,6 @@ public class WordOccurrenceMatrix {
 
         test_set.remove("");
 
-        ///todo TU STOPLISTA !!!!!!
-
         words_array = (String[]) test_set.toArray(String[]::new);
 
         words_hash_map = new HashMap();

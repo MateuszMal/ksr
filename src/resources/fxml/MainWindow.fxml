@@ -26,12 +26,13 @@
                         <MenuItem fx:id="endItem" mnemonicParsing="false" onAction="#exit" text="Zakończ" />
                   </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="Edytuj">
+                <Menu mnemonicParsing="false" text="Ustawienia">
                   <items>
                     <MenuItem fx:id="stopListItem" mnemonicParsing="false" onAction="#onStopListItem" text="Stop lista" />
                         <MenuItem fx:id="measuresChoice" mnemonicParsing="false" onAction="#onMeasureChoiceItem" text="Wybór miar" />
                         <MenuItem fx:id="attributesChoice" mnemonicParsing="false" onAction="#chooseAttributes" text="Wybór cech" />
                         <MenuItem fx:id="percentageScope" mnemonicParsing="false" onAction="#onPercentageScopeItem" text="Zakres procentowy" />
+                        <MenuItem fx:id="kParameter" mnemonicParsing="false" onAction="#onKParameter" text="Parametr k" />
                   </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Pomoc">
@@ -63,7 +64,7 @@
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </VBox.margin>
             </SplitMenuButton>
-            <Button fx:id="startButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Rozpocznij">
+            <Button fx:id="startButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onStartButton" text="Rozpocznij">
                <VBox.margin>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </VBox.margin>

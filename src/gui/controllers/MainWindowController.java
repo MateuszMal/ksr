@@ -1,5 +1,6 @@
 package gui.controllers;
 
+import gui.Alerts;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,9 +10,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SplitMenuButton;
+import javafx.scene.text.Text;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
+import mainflow.DataHolder;
+import mainflow.FlowManager;
+import org.apache.commons.lang3.StringUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -42,7 +47,12 @@ public class MainWindowController {
     @FXML
     private MenuItem aboutProgram;
     @FXML
+    private MenuItem kParameter;
+    @FXML
     private MenuBar menuBar;
+
+    private String directoryPath = "data";
+    DataHolder dataHolder = DataHolder.getInstance();
 
     @FXML
     void initialize() {
@@ -54,6 +64,7 @@ public class MainWindowController {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         File directory = directoryChooser.showDialog(stage);
         try {
+            dataHolder.setDirectoryPath(directory.getPath());
             return directory.getPath();
         } catch (NullPointerException e) {
             throw new RuntimeException();
@@ -66,13 +77,14 @@ public class MainWindowController {
         Stage stage = (Stage) menuBar.getScene().getWindow();
         File directory = directoryChooser.showDialog(stage); // path to directory
         try {
+            dataHolder.setDirectoryPath(directory.getPath());
             return directory.getPath();
         } catch (Exception e) {
             throw new RuntimeException("User does not chose directory");
         }
     }
 
-    public void onPercentageScopeItem(){
+    public void onPercentageScopeItem() {
         showNewStage("/resources/fxml/RangeBar.fxml");
     }
 
@@ -80,22 +92,65 @@ public class MainWindowController {
         showNewStage("/resources/fxml/ChooseAttributes.fxml");
     }
 
-    public void onMeasureChoiceItem(){
+    public void onStartButton() {
+        FlowManager flowManager = setAttributes();
+
+        String results = flowManager.startAlgorithm();
+
+        Alerts.result(results);
+    }
+
+    public void onMeasureChoiceItem() {
         showNewStage("/resources/fxml/ChooseMeasures.fxml");
     }
 
-    public void onStopListItem(){
+    public void onStopListItem() {
         showNewStage("/resources/fxml/StopListStage.fxml");
     }
 
-    public void onAboutProgram(){
+    public void onAboutProgram() {
         showNewStage("/resources/fxml/AboutWindow.fxml");
+    }
+
+    public void onKParameter() {
+        showNewStage("/resources/fxml/KParameter.fxml");
     }
 
 
     public void exit() {
         log.info("Shutting down by user");
         System.exit(0);
+    }
+
+    private FlowManager setAttributes() {
+        FlowManager flowManager = new FlowManager();
+        if (dataHolder.getMetricSwitch() == 0) {
+            Alerts.alertMsg("Nie wybrałeś metryki. Zostanie użyta metryka Euklidesa");
+        } else {
+            flowManager.setMetricSwitch(dataHolder.getMetricSwitch());
+        }
+        if (dataHolder.getTestingRange() == 0) {
+            Alerts.alertMsg("Nie wybrałeś zakresu danych testowych. Zostanie użyte 50%");
+        } else {
+            flowManager.setPercentage(dataHolder.getTestingRange());
+        }
+        if (dataHolder.getAttributes() == null) {
+            Alerts.alertMsg("Nie wybrałeś cech. Zostaną użyte wszystkie dostępne");
+        } else {
+            flowManager.setParametersSwitch(dataHolder.getAttributes().stream().mapToInt(i -> i).toArray());
+        }
+        if (StringUtils.isEmpty(dataHolder.getDirectoryPath())) {
+            Alerts.alertMsg("Nie podałeś ścieżki do własnych plików. Zostaną użyte pliki testowe");
+        } else {
+            flowManager.setDirPath(dataHolder.getDirectoryPath());
+        }
+        if(dataHolder.getKParameter() != 0) {
+            flowManager.setKParameter(dataHolder.getKParameter());
+        }
+        if (dataHolder.getStopList() != null && !dataHolder.getStopList().isEmpty()) {
+            flowManager.setStopListWords(dataHolder.getStopList());
+        }
+        return flowManager;
     }
 
     private void showNewStage(String path) {
@@ -108,7 +163,7 @@ public class MainWindowController {
             stage.setTitle("KSR");
             stage.setScene(scene);
             stage.show();
-        } catch (IOException e){
+        } catch (IOException e) {
             log.error("Failed to load new scene");
         }
     }

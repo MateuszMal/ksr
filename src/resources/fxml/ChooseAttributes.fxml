@@ -22,52 +22,52 @@
                 </Menu>
               </menus>
             </MenuBar>
-            <RadioButton mnemonicParsing="false" prefHeight="18.0" prefWidth="367.0" text="Częstotliwość słów kluczowych w pierwszych 30%" textAlignment="CENTER">
+            <RadioButton fx:id="keywordFrequency30" mnemonicParsing="false" prefHeight="18.0" prefWidth="367.0" text="Częstotliwość słów kluczowych w pierwszych 30%" textAlignment="CENTER">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="20.0" />
                </VBox.margin>
             </RadioButton>
-            <RadioButton mnemonicParsing="false" prefHeight="18.0" prefWidth="367.0" text="Częstotliwość słów kluczowych w ostatnich 15%" textAlignment="CENTER">
+            <RadioButton fx:id="keywordFrequency15" mnemonicParsing="false" prefHeight="18.0" prefWidth="367.0" text="Częstotliwość słów kluczowych w ostatnich 15%" textAlignment="CENTER">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
             </RadioButton>
-            <RadioButton mnemonicParsing="false" prefHeight="18.0" prefWidth="367.0" text="Najczęściej występujące słowo w tekście" textAlignment="CENTER">
+            <RadioButton fx:id="mostCommonWord" mnemonicParsing="false" prefHeight="18.0" prefWidth="367.0" text="Najczęściej występujące słowo w tekście" textAlignment="CENTER">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
             </RadioButton>
-            <RadioButton mnemonicParsing="false" prefHeight="18.0" prefWidth="367.0" text="Długość tekstu" textAlignment="CENTER">
+            <RadioButton fx:id="textLength" mnemonicParsing="false" prefHeight="18.0" prefWidth="367.0" text="Długość tekstu" textAlignment="CENTER">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
             </RadioButton>
-            <RadioButton mnemonicParsing="false" prefHeight="18.0" prefWidth="367.0" text="Najczęściej występujące słowo z wielkiej litery" textAlignment="CENTER">
+            <RadioButton fx:id="mostCommonWordCapitalLetter" mnemonicParsing="false" prefHeight="18.0" prefWidth="367.0" text="Najczęściej występujące słowo z wielkiej litery" textAlignment="CENTER">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
             </RadioButton>
-            <RadioButton mnemonicParsing="false" prefHeight="18.0" prefWidth="367.0" text="Średnia długość zdań" textAlignment="CENTER">
+            <RadioButton fx:id="averageLengthSentence" mnemonicParsing="false" prefHeight="18.0" prefWidth="367.0" text="Średnia długość zdań" textAlignment="CENTER">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
             </RadioButton>
-            <RadioButton mnemonicParsing="false" prefHeight="18.0" prefWidth="367.0" text="Częstotliwość występowania cyfr" textAlignment="CENTER">
+            <RadioButton fx:id="digitFrequency" mnemonicParsing="false" prefHeight="18.0" prefWidth="367.0" text="Częstotliwość występowania cyfr" textAlignment="CENTER">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
             </RadioButton>
-            <RadioButton mnemonicParsing="false" prefHeight="18.0" prefWidth="367.0" text=" Częstotliwość występowania 2 słów kluczowych" textAlignment="CENTER">
+            <RadioButton fx:id="firstTwoKeywordFrequency" mnemonicParsing="false" prefHeight="18.0" prefWidth="367.0" text=" Częstotliwość występowania 2 słów kluczowych" textAlignment="CENTER">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
             </RadioButton>
-            <RadioButton mnemonicParsing="false" prefHeight="18.0" prefWidth="367.0" text=" Ilość występowania 'there'" textAlignment="CENTER">
+            <RadioButton fx:id="thereFrequency" mnemonicParsing="false" prefHeight="18.0" prefWidth="367.0" text=" Ilość występowania 'there'" textAlignment="CENTER">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
             </RadioButton>
-            <RadioButton mnemonicParsing="false" prefHeight="18.0" prefWidth="367.0" text=" Ilość występowania 'than'" textAlignment="CENTER">
+            <RadioButton fx:id="thanFrequency" mnemonicParsing="false" prefHeight="18.0" prefWidth="367.0" text=" Ilość występowania 'than'" textAlignment="CENTER">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
