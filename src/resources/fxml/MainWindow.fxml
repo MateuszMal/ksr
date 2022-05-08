@@ -26,12 +26,13 @@
                         <MenuItem fx:id="endItem" mnemonicParsing="false" onAction="#exit" text="Zakończ" />
                   </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="Edytuj">
+                <Menu mnemonicParsing="false" text="Ustawienia">
                   <items>
                     <MenuItem fx:id="stopListItem" mnemonicParsing="false" onAction="#onStopListItem" text="Stop lista" />
                         <MenuItem fx:id="measuresChoice" mnemonicParsing="false" onAction="#onMeasureChoiceItem" text="Wybór miar" />
                         <MenuItem fx:id="attributesChoice" mnemonicParsing="false" onAction="#chooseAttributes" text="Wybór cech" />
                         <MenuItem fx:id="percentageScope" mnemonicParsing="false" onAction="#onPercentageScopeItem" text="Zakres procentowy" />
+                        <MenuItem fx:id="kParameter" mnemonicParsing="false" onAction="#onKParameter" text="Parametr k" />
                   </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Pomoc">

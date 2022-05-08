@@ -47,6 +47,8 @@ public class MainWindowController {
     @FXML
     private MenuItem aboutProgram;
     @FXML
+    private MenuItem kParameter;
+    @FXML
     private MenuBar menuBar;
 
     private String directoryPath = "data";
@@ -110,6 +112,10 @@ public class MainWindowController {
         showNewStage("/resources/fxml/AboutWindow.fxml");
     }
 
+    public void onKParameter() {
+        showNewStage("/resources/fxml/KParameter.fxml");
+    }
+
 
     public void exit() {
         log.info("Shutting down by user");
@@ -137,6 +143,12 @@ public class MainWindowController {
             Alerts.alertMsg("Nie podałeś ścieżki do własnych plików. Zostaną użyte pliki testowe");
         } else {
             flowManager.setDirPath(dataHolder.getDirectoryPath());
+        }
+        if(dataHolder.getKParameter() != 0) {
+            flowManager.setKParameter(dataHolder.getKParameter());
+        }
+        if (dataHolder.getStopList() != null && !dataHolder.getStopList().isEmpty()) {
+            flowManager.setStopListWords(dataHolder.getStopList());
         }
         return flowManager;
     }

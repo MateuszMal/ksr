@@ -9,12 +9,13 @@ import java.util.List;
 @Getter
 @Setter
 public final class DataHolder {
+    private static DataHolder INSTANCE = new DataHolder();
     private int metricSwitch = 3;
     private ArrayList<Integer> attributes;
     private double testingRange;
     private String directoryPath;
-    private List<String> stopList; //todo add this to StopList class as a parameter
-    private static DataHolder INSTANCE = new DataHolder();
+    private List<String> stopList;
+    private int kParameter;
 
     private DataHolder() {
     }

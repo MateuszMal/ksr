@@ -15,8 +15,13 @@ public class StopList {
     private final List<String> stopList;
 
     public StopList() {
-        stopList = ReadSgmFile.fileReader(STOP_LIST_FILE);
+        this.stopList = ReadSgmFile.fileReader(STOP_LIST_FILE);
     }
+
+    public StopList(List<String> stopList) {
+        this.stopList = stopList;
+    }
+
 
     public HashMap<String, List<String>> removeWords(HashMap<String, List<String>> articles) {
         for (Map.Entry<String, List<String>> entry : articles.entrySet()) {

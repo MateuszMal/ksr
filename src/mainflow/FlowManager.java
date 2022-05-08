@@ -20,13 +20,14 @@ import java.util.List;
 @Getter
 @Setter
 public class FlowManager {
-    private String dirPath = "data"; // todo change to default
+    private String dirPath = "data";
     private ReadSgmFile readSgmFile;
     private final ExtractFiles extractFiles = new ExtractFiles();
-    private final StopList stopList = new StopList();
+    private List<String> stopListWords;
     private int metricSwitch = 3;
     private int[] parametersSwitch = new int[]{1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
     private double percentage = 0.5;
+    private int kParameter = 1;
 
     public String startAlgorithm() {
         long startTime = System.nanoTime();
@@ -34,12 +35,19 @@ public class FlowManager {
         List<String> sgmFiles = readSgmFile.readFiles();
 
         HashMap<String, List<String>> articles = extractFiles.countriesAndArticles(sgmFiles);
+
+        StopList stopList;
+        if (stopListWords != null) {
+            stopList = new StopList(stopListWords);
+        } else {
+            stopList = new StopList();
+        }
         HashMap<String, List<String>> articlesAfterStopList = stopList.removeWords(articles);
 
         Stemming stemming = new Stemming();
         HashMap<String, List<String>> articlesAfterStemming = stemming.lemmtizeArticles(articlesAfterStopList);
 
-        StringFormatter.format_whole_hash_map(articlesAfterStemming); // todo check if it is needed twice
+        StringFormatter.format_whole_hash_map(articlesAfterStemming);
 
         HashMap<String, ArrayList<String>> categoryKeywords = CategoryKeyword_Manager.create_category_keywords_hash_map_static(
                 articlesAfterStemming,
@@ -49,12 +57,11 @@ public class FlowManager {
                 articlesAfterStemming,
                 bagOfWords);
 
-        int k = 1;
 
         Algorithm algorithm = new Algorithm(vectorsMap);
 
         algorithm.split_articles(percentage);
-        algorithm.categorise_whole_data(k, parametersSwitch, metricSwitch);
+        algorithm.categorise_whole_data(kParameter, parametersSwitch, metricSwitch);
 
         System.out.println("##############");
 
