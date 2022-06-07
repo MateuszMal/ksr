@@ -18,9 +18,9 @@ public class ExtractFiles {
     private final List<String> countries = List.of("west-germany", "usa", "france", "uk", "canada", "japan");
     private final StringBuilder buffer = new StringBuilder();
     private final List<String> filteredByTags = new ArrayList<>();
-    private static final ExecutorService executor = Executors.newFixedThreadPool(10);
 
     public HashMap<String, List<String>> countriesAndArticles(List<String> files) {
+        ExecutorService executor = Executors.newFixedThreadPool(10);
         HashMap<String, List<String>> articles = new HashMap<>();
         Future<List<String>> places = executor.submit(expensive(files));
         try {

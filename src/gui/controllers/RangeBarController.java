@@ -28,7 +28,7 @@ public class RangeBarController {
         Stage stage = (Stage) choiceButton.getScene().getWindow();
         boolean isChosen = false;
         if(slider.getValue() != 0) {
-            dataHolder.setTestingRange(slider.getValue());
+            dataHolder.setTestingRange(slider.getValue() / 100);
             isChosen = true;
         } else {
             Alerts.alertMsg("Podaj wartość większą od 0");
